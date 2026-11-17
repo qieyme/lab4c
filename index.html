@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 4b - Question 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>Open Browser Inspect Console (F12 &rarr; Console) to view output</h2>
+    <script>
+        $(document).ready(function () {
+            $.getJSON("books.json", function (data) {
+                console.log("(a) Title of the first book:", data.books[0].title);
+
+                console.log("(b) Author of the second book:", data.books[1].author);
+
+                console.log("(c) Genres of all books:");
+                $.each(data.books, function (index, book) {
+                    console.log(" - " + book.title + ": " + book.genres.join(", "));
+                });
+            }).fail(function () {
+                console.error("Failed to load books.json. Make sure you run this via a local server (e.g., VS Code Live Server).");
+            });
+        });
+    </script>
+</body>
+</html>
